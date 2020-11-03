@@ -10,7 +10,7 @@ public class CameraBoundingScript : MonoBehaviour
 
     public float moveSpeed = 2f;
 
-    public bool getMinPositionsOnStart = true;
+    public bool getMinConstraintsOnStart = true;
 
     public enum CameraBehaviours
     {
@@ -22,33 +22,64 @@ public class CameraBoundingScript : MonoBehaviour
 
     private void Start()
     {
-        if (getMinPositionsOnStart)
-        {
-            MIN_X_POSITION = transform.position.x;
-            MIN_Y_POSITION = transform.position.y;
-
-        }
+        //Get minimum constraints if the option is chosen based on the initial position
+        if (getMinConstraintsOnStart) SetMinimumConstraintsAsCurrentCameraPosition();
     }
 
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
 
         switch (cameraBehaviour)
         {
+            //If Free Camera movement is chosen
             case CameraBehaviours.FreeMovement:
-                transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * moveSpeed + Vector2.up * verticalInput * Time.deltaTime * moveSpeed);
+                FreeMovement();
                 break;
+
+            //If Follow Player camera movement is chosen
             case CameraBehaviours.FollowPlayer:
+                FollowPlayer();
                 break;
         }
 
+        ClampPosition();
+
+    }
+
+    /// <summary>
+    /// Move player according to player inputs, not player position
+    /// </summary>
+    private void FreeMovement()
+    {
+        //Get inputs from the user
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        //Apply movement
+        transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * moveSpeed + Vector2.up * verticalInput * Time.deltaTime * moveSpeed);
+    }
+
+    private void FollowPlayer()
+    {
+        Debug.LogError("FollowPlayer camera movement not implemented!");
+    }
+
+    /// <summary>
+    /// Clamps the current position of the camera depending on the established constraints
+    /// </summary>
+    private void ClampPosition()
+    {
         if (transform.position.x < MIN_X_POSITION || transform.position.x > MAX_X_POSITION || transform.position.y < MIN_Y_POSITION || transform.position.y > MAX_Y_POSITION)
         {
-            Debug.Log("Clamping!");
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, MIN_X_POSITION, MAX_X_POSITION), Mathf.Clamp(transform.position.y, MIN_Y_POSITION, MAX_Y_POSITION), transform.position.z);
         }
     }
 
+    /// <summary>
+    /// Sets minimum X and Y constraints using the current position of the camera
+    /// </summary>
+    private void SetMinimumConstraintsAsCurrentCameraPosition()
+    {
+        MIN_X_POSITION = transform.position.x;
+        MIN_Y_POSITION = transform.position.y;
+    }
 }
