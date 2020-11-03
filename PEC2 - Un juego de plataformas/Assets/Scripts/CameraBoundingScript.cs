@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CameraBoundingScript : MonoBehaviour
 {
+    public Transform player;
     public float MIN_X_POSITION = 5f, MAX_X_POSITION = Mathf.Infinity;
     public float MIN_Y_POSITION = 4.5f, MAX_Y_POSITION = Mathf.Infinity;
 
@@ -60,7 +61,7 @@ public class CameraBoundingScript : MonoBehaviour
 
     private void FollowPlayer()
     {
-        Debug.LogError("FollowPlayer camera movement not implemented!");
+        transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
     }
 
     /// <summary>
