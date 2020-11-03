@@ -5978,7 +5978,7 @@ MonoBehaviour:
   MAX_Y_POSITION: 10
   moveSpeed: 15
   getMinConstraintsOnStart: 1
-  cameraBehaviour: 0
+  cameraBehaviour: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
