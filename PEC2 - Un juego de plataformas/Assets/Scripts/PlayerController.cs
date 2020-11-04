@@ -5,14 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    //Value around 0 in which the horizontal input isn't taken into account
+    public static float HORIZONTAL_DEAD_ZONE = 0.05f;
+
+
+    //Different input values
+    public int horizontalInput = 0;
+    public bool runInputHeldDown = false, jumpInputPressedDown = false, jumpInputHeldDown = false;
+
+
     private Rigidbody2D rb;
-
-    public float maxWalkingSpeed = 5.625f;
-    public float horizontalInput;
-
-    private IEnumerator distanceCoroutine = null;
-
-    public PlayerMovementState state;
 
     void Start()
     {
@@ -21,33 +23,39 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        if (Input.GetButtonDown("Fire1"))
-        {
-            if (distanceCoroutine == null)
-            {
-                distanceCoroutine = DistanceCoroutine();
-                StartCoroutine(distanceCoroutine);
-            }
-            if (state == null)
-            {
-                state = gameObject.AddComponent<WalkingState>();
-            }
-        }
+        UpdateHorizontalInput();
+        //UpdateRunInputPressed();
+        UpdateJumpInput();
     }
 
-    private void FixedUpdate()
+    /// <summary>
+    /// Update the horizontal axis input transforming it to either -1, 0 or 1
+    /// </summary>
+    private void UpdateHorizontalInput()
     {
-
-
-
+        float currentHorizontalInput = Input.GetAxis("Horizontal");
+        if (currentHorizontalInput > HORIZONTAL_DEAD_ZONE) horizontalInput = 1;
+        else if (currentHorizontalInput < -HORIZONTAL_DEAD_ZONE) horizontalInput = -1;
+        else horizontalInput = 0;
     }
 
-    private IEnumerator DistanceCoroutine()
+    /// <summary>
+    /// Updates the value that keeps track of whether the run button 
+    /// is being held down
+    /// </summary>
+    private void UpdateRunInputPressed()
     {
-        float initialPositionX = transform.position.x;
-        yield return new WaitForSeconds(1f);
-        Debug.Log("Distance traveled in one second: " + Mathf.Abs(transform.position.x - initialPositionX));
-        distanceCoroutine = null;
+        runInputHeldDown = Input.GetButtonDown("Run");
     }
+
+    /// <summary>
+    /// Updates the value that keeps track of whether the jump button was just pressed 
+    /// down or is being held down
+    /// </summary>
+    private void UpdateJumpInput()
+    {
+        jumpInputPressedDown = Input.GetButtonDown("Jump");
+        jumpInputHeldDown = Input.GetButton("Jump");
+    }
+
 }
