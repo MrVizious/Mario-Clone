@@ -6,7 +6,7 @@ A continuación se explicarán algunos de los elementos claves del trabajo.
 
 ## Fidelidad al juego original
 
-Un reto personal en este trabajo ha sido realizar el juego de la manera más cercana posible a las físicas del original. Para ello, y tras investigar por la red, me topé con [este post](https://web.archive.org/web/20130807122227/http://i276.photobucket.com/albums/kk21/jdaster64/smb_playerphysics.png) en el que se detallaba cómo funcionaban las físicas en el juego de la NES.
+Como reto personal, en este trabajo he intentado realizar el juego de la manera más cercana posible a las físicas del original. Para ello, y tras investigar por la red, me topé con [este post](https://web.archive.org/web/20130807122227/http://i276.photobucket.com/albums/kk21/jdaster64/smb_playerphysics.png) en el que se detallaba cómo funcionaban las físicas en el juego de la NES. La misma imagen se encuentra en [esta ruta local](/README_Data/smb_playerphysics.png).
 
 El problema reside en que estos cálculos están en bloques, píxeles, subpíxeles, subsubpíxeles y subsubsubpíxeles por frame, tomando como referencia 60 frames por segundo. Por suerte, un simple programa que sirva como traductor entre estas medidas y unidades por segundo nos servirá, dado que la velocidad en Unity se calcula de esa manera según [esta página de la documentación](https://docs.unity3d.com/ScriptReference/Rigidbody-velocity.html), en una nota al pie.
 
