@@ -7,10 +7,12 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    public float maxRunningSpeed = 5.625f;
-    private float horizontalInput;
+    public float maxWalkingSpeed = 5.625f;
+    public float horizontalInput;
 
     private IEnumerator distanceCoroutine = null;
+
+    public PlayerMovementState state;
 
     void Start()
     {
@@ -27,21 +29,17 @@ public class PlayerController : MonoBehaviour
                 distanceCoroutine = DistanceCoroutine();
                 StartCoroutine(distanceCoroutine);
             }
+            if (state == null)
+            {
+                state = gameObject.AddComponent<WalkingState>();
+            }
         }
     }
 
     private void FixedUpdate()
     {
 
-        if (horizontalInput < 0f)
-        {
-            rb.velocity = new Vector2(-maxRunningSpeed, rb.velocity.y);
-        }
-        else if (horizontalInput > 0f)
-        {
-            rb.velocity = new Vector2(maxRunningSpeed, rb.velocity.y);
-        }
-        else rb.velocity = new Vector2(0f, rb.velocity.y);
+
 
     }
 
