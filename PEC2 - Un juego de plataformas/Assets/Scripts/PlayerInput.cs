@@ -29,6 +29,7 @@ public class PlayerInput : MonoBehaviour
         if (currentHorizontalInput > HORIZONTAL_DEAD_ZONE) horizontalInput = 1;
         else if (currentHorizontalInput < -HORIZONTAL_DEAD_ZONE) horizontalInput = -1;
         else horizontalInput = 0;
+        Debug.Log("Horizontal input: " + horizontalInput);
     }
 
     /// <summary>

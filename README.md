@@ -24,3 +24,4 @@ Con este script hecho a propósito para este trabajo, sacaremos las medidas que 
 
 Por ejemplo, comenzaremos sacando la velocidad máxima de Mario al andar sobre tierra. Según el post esta velocidad es 01900 (1 píxel y 9 subpíxeles) por cada frame. Al hacer el cálculo, nos sale un resultado de 5.761719 unidades por segundo, muy similar a la velocidad que se calcula en [esta otra fuente](https://explodingrabbit.com/game-units-577/), que sale a 5.625 unidades por segundo. Para tener unas medidas más coherentes entre ellas a lo largo del trabajo, usaremos las medidas que calculemos nosotros.
 
+https://blog.hamaluik.ca/posts/super-mario-world-physics/
