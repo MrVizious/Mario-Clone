@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerInput : MonoBehaviour
 {
 
     //Value around 0 in which the horizontal input isn't taken into account
@@ -12,14 +12,6 @@ public class PlayerController : MonoBehaviour
     //Different input values
     public int horizontalInput = 0;
     public bool runInputHeldDown = false, jumpInputPressedDown = false, jumpInputHeldDown = false;
-
-
-    private Rigidbody2D rb;
-
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
 
     void Update()
     {

@@ -40,6 +40,7 @@ public class CameraBoundingScript : MonoBehaviour
             //If Follow Player camera movement is chosen
             case CameraBehaviours.FollowPlayer:
                 FollowPlayer();
+                SetNewConstraints();
                 break;
         }
 
@@ -64,6 +65,11 @@ public class CameraBoundingScript : MonoBehaviour
         transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
     }
 
+    private void SetNewConstraints()
+    {
+        if (transform.position.x > MIN_X_POSITION) MIN_X_POSITION = transform.position.x;
+    }
+
     /// <summary>
     /// Clamps the current position of the camera depending on the established constraints
     /// </summary>
@@ -76,11 +82,10 @@ public class CameraBoundingScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets minimum X and Y constraints using the current position of the camera
+    /// Sets minimum Y constraint using the current position of the camera
     /// </summary>
     private void SetMinimumConstraintsAsCurrentCameraPosition()
     {
-        MIN_X_POSITION = transform.position.x;
         MIN_Y_POSITION = transform.position.y;
     }
 }
