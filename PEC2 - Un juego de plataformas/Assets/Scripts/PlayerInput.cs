@@ -13,6 +13,8 @@ public class PlayerInput : MonoBehaviour
     public int horizontalInput = 0;
     public bool runInputHeldDown = false, jumpInputPressedDown = false, jumpInputHeldDown = false;
 
+    //Sprite for flipping
+
     void Update()
     {
         UpdateHorizontalInput();
@@ -26,10 +28,15 @@ public class PlayerInput : MonoBehaviour
     private void UpdateHorizontalInput()
     {
         float currentHorizontalInput = Input.GetAxis("Horizontal");
-        if (currentHorizontalInput > HORIZONTAL_DEAD_ZONE) horizontalInput = 1;
-        else if (currentHorizontalInput < -HORIZONTAL_DEAD_ZONE) horizontalInput = -1;
+        if (currentHorizontalInput > HORIZONTAL_DEAD_ZONE)
+        {
+            horizontalInput = 1;
+        }
+        else if (currentHorizontalInput < -HORIZONTAL_DEAD_ZONE)
+        {
+            horizontalInput = -1;
+        }
         else horizontalInput = 0;
-        Debug.Log("Horizontal input: " + horizontalInput);
     }
 
     /// <summary>
