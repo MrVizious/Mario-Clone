@@ -48532,6 +48532,7 @@ GameObject:
   - component: {fileID: 1924645784}
   - component: {fileID: 1924645783}
   - component: {fileID: 1924645786}
+  - component: {fileID: 1924645787}
   m_Layer: 0
   m_Name: Goomba
   m_TagString: Untagged
@@ -48663,6 +48664,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae833b0ff26885addb17504046353d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1924645787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924645781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 525d20bfbe9cb2aa8853ce18e0c9661b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startFacingRight: 1
+  speed: 2
+  collisionCheckDistance: 0.65
+  collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &1936388708
 GameObject:
   m_ObjectHideFlags: 0

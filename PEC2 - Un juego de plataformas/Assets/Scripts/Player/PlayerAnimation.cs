@@ -10,6 +10,7 @@ public class PlayerAnimation : MonoBehaviour
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+        input = GetComponent<PlayerInput>();
     }
 
     private void Update()
@@ -28,7 +29,10 @@ public class PlayerAnimation : MonoBehaviour
     {
         GetComponent<PlayerInput>().enabled = false;
         GetComponent<PlayerMovement>().enabled = false;
-        GetComponent<Rigidbody2D>().isKinematic = true;
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = true;
+        rb.gravityScale = 0f;
+        rb.velocity = Vector3.zero;
         StartCoroutine(DieAnimation());
     }
 
