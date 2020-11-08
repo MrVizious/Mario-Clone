@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleMovement : MonoBehaviour
+public class GoombaMovement : MonoBehaviour
 {
     public bool startFacingRight = false;
     public float speed = 2f;
@@ -29,5 +29,4 @@ public class SimpleMovement : MonoBehaviour
         rb.velocity = new Vector2(speed, rb.velocity.y);
 
     }
-
 }
