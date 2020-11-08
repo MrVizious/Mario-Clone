@@ -6,15 +6,23 @@ using UnityEngine.SceneManagement;
 public class PlayerAnimation : MonoBehaviour
 {
     private SpriteRenderer sprite;
+    private Animator animator;
     private PlayerInput input;
+    private PlayerMovement movement;
+    public SceneController sceneController;
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
         input = GetComponent<PlayerInput>();
+        animator = GetComponent<Animator>();
+        movement = GetComponent<PlayerMovement>();
     }
 
     private void Update()
     {
+        animator.SetBool("Walking", input.horizontalInput != 0f);
+        animator.SetBool("Jumping", !movement.grounded);
+        UpdateSpriteDirection();
     }
 
     /// <summary>
@@ -43,6 +51,7 @@ public class PlayerAnimation : MonoBehaviour
         rb.isKinematic = true;
         rb.gravityScale = 0f;
         rb.velocity = Vector3.zero;
+        animator.SetBool("Dead", true);
         StartCoroutine(DieAnimation());
     }
 
@@ -53,7 +62,6 @@ public class PlayerAnimation : MonoBehaviour
     private IEnumerator DieAnimation()
     {
         yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        yield return null;
+        sceneController.GoToEndMenu();
     }
 }

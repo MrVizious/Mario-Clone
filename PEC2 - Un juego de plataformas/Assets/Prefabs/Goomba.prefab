@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6072627342512434832}
   - component: {fileID: 6072627342512434844}
   - component: {fileID: 6072627342512434843}
+  - component: {fileID: 7455939220013781279}
   m_Layer: 12
   m_Name: Goomba
   m_TagString: Enemy
@@ -50,6 +51,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -166,3 +168,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5c134e74560e268a6fe3d535fa8b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &7455939220013781279
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6072627342512434834}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 256f247a54de7e2328a580d1f6b45c72, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

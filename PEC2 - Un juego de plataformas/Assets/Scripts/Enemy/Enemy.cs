@@ -11,6 +11,16 @@ public class Enemy : MonoBehaviour
     public void Die(PlayerMovement playerMovement)
     {
         playerMovement.Jump();
+        GetComponent<Animator>().SetBool("Dead", true);
+        GetComponent<GoombaMovement>().enabled = false;
+        Destroy(GetComponent<Rigidbody2D>());
+        GetComponent<Collider2D>().enabled = false;
+        StartCoroutine(DieCoroutine());
+    }
+
+    private IEnumerator DieCoroutine()
+    {
+        yield return new WaitForSeconds(0.35f);
         Destroy(gameObject);
     }
 }
