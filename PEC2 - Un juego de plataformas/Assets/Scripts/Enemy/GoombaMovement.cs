@@ -28,6 +28,9 @@ public class GoombaMovement : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Checks for walls ahead and turns the goomba around if one is found
+    /// </summary>
     private void CheckForWalls()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, (speed > 0f ? Vector2.right : Vector2.left), collisionCheckDistance, collisionLayerMask);
@@ -37,6 +40,9 @@ public class GoombaMovement : MonoBehaviour
         if (hit.collider != null) speed = -speed;
     }
 
+    /// <summary>
+    /// Checks both left and right for the player, and kills it if found
+    /// </summary>
     private void CheckForPlayer()
     {
         RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, collisionCheckDistance, playerLayerMask);

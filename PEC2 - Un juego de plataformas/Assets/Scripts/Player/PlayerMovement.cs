@@ -117,8 +117,8 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawRay(transform.position, -rb.transform.up * enemyCheckDistance, Color.red);
 
         if (hitLeft.collider != null && hitLeft.collider.tag.Equals("Enemy")) hitLeft.collider.gameObject?.GetComponent<Enemy>().Die(this);
-        if (hitRight.collider != null && hitRight.collider.tag.Equals("Enemy")) hitRight.collider.gameObject?.GetComponent<Enemy>().Die(this);
-        if (hitCenter.collider != null && hitCenter.collider.tag.Equals("Enemy")) hitCenter.collider.gameObject?.GetComponent<Enemy>().Die(this);
+        else if (hitRight.collider != null && hitRight.collider.tag.Equals("Enemy")) hitRight.collider.gameObject?.GetComponent<Enemy>().Die(this);
+        else if (hitCenter.collider != null && hitCenter.collider.tag.Equals("Enemy")) hitCenter.collider.gameObject?.GetComponent<Enemy>().Die(this);
     }
 
     /// <summary>

@@ -4,24 +4,31 @@ Este es un trabajo realizado para la asignatura de Programación 2D del máster 
 
 A continuación se explicarán algunos de los elementos claves del trabajo.
 
-## Fidelidad al juego original
+## Recreación del juego original
 
-Como reto personal, en este trabajo he intentado realizar el juego de la manera más cercana posible a las físicas del original. Para ello, y tras investigar por la red, me topé con [este post](https://web.archive.org/web/20130807122227/http://i276.photobucket.com/albums/kk21/jdaster64/smb_playerphysics.png) en el que se detallaba cómo funcionaban las físicas en el juego de la NES. La misma imagen se encuentra también en [esta ruta local](/README_Data/smb_playerphysics.png).
+Para conseguir una sensación lo más fiel al juego original, se buscó en internet el tileset original. Una vez se dividió en paletas y se recreó el mapa a escala 1:1, se ajustó la cámara para tener un ratio de aspecto 4:3 y que se viese sólo lo que se veía en el original y se colocaron los enemigos en sus posiciones adecuadas, teniendo en cuenta la colocación de spawners que evitan que aparezcan antes de tiempo.
 
-El problema reside en que estos cálculos están en bloques, píxeles, subpíxeles, subsubpíxeles y subsubsubpíxeles por frame, tomando como referencia 60 frames por segundo. Por suerte, un simple programa que sirva como traductor entre estas medidas y unidades por segundo nos servirá, dado que la velocidad en Unity se calcula de esa manera según [esta página de la documentación](https://docs.unity3d.com/ScriptReference/Rigidbody-velocity.html), en una nota al pie.
+Tras buscar en internet, se encontró [este artículo](https://blog.hamaluik.ca/posts/super-mario-world-physics/) que, aun a pesar de ser sobre el Super Mario World, da tanto la velocidad como la gravedad de mario, y la potencia de salto. Resultan ser unas medidas muy próximas al original y que se sienten muy bien.
 
-```csharp
-//Change the values to match the ones found in the physics breakdown
-float block = 0, pixel = 0, spixel = 0, sspixel = 0, ssspixel = 0;
-		
-float unitsMoved = block + (pixel/16) + (spixel/(16*16)) + (sspixel/(16*16*16)) + (sspixel/(16*16*16*16));
+## Estructura de software del jugador
 
-Console.WriteLine("Units moved in a frame: " + unitsMoved);
-Console.WriteLine("Units moved in a second: " + (unitsMoved*60));
-```
+Para mantener divididos los scripts del jugador, se crean tres diferentes:
+- PlayerInput
+- PlayerMovement
+- PlayerAnimation
 
-Con este script hecho a propósito para este trabajo, sacaremos las medidas que necesitamos.
+El primero, **PlayerInput**, se encarga de mantener actualizadas una serie de variables que se pueden utilizar por los otros scripts, como si se ha pulsado o mantenido el botón de salto, en qué dirección se está queriendo mover el jugador, o si se está pulsando el botón de correr (aunque esta última no está implementada en el movimiento).
 
-Por ejemplo, comenzaremos sacando la velocidad máxima de Mario al andar sobre tierra. Según el post esta velocidad es 01900 (1 píxel y 9 subpíxeles) por cada frame. Al hacer el cálculo, nos sale un resultado de 5.761719 unidades por segundo, muy similar a la velocidad que se calcula en [esta otra fuente](https://explodingrabbit.com/game-units-577/), que sale a 5.625 unidades por segundo. Para tener unas medidas más coherentes entre ellas a lo largo del trabajo, usaremos las medidas que calculemos nosotros.
+**PlayerMovement** utiliza la información del input para decidir qué debe hacer Mario. Cuándo saltar, hacia qué dirección, etc. Además, lleva un control sobre si el jugador ha entrado en contacto con el suelo o con un enemigo desde abajo, y si es el caso, llama a la función Die() de dicho enemigo.
 
-https://blog.hamaluik.ca/posts/super-mario-world-physics/
+**PlayerAnimation**, por último, se puede ampliar para añadir animaciones de correr, saltar, frenar y acelerar, aunque de momento simplemente se encarga de mantener a Mario apuntando al sitio al que se mueve, a base de invertir el sprite. También es en este script donde se encuentra la función Die() de Mario que, aun pudiendo estar en una clase como PlayerController o similar, se ha puesto aquí por no crear demasiados scripts y porque, de igual manera, haría falta tener esta función aquí para mostrar la animación de muerte.
+
+## Estructura de software de los enemigos
+
+Los enemigos tienen dos scripts:
+- Un script de movimiento, que llegado el caso se podría crear uno genérico del que derivasen todos, pero que de momento al haber solo uno, se mantiene ajeno al resto.
+- Otro script de enemigo, llamado **Enemy**, en el que se halla la función Die() y que, en caso de necesitarse, podría heredarse en patrones de comportamiento diferentes (por ejemplo, los koopa no se mueren al caer encima, sino que se esconden).
+
+## Elementos de pantalla
+
+Para conseguir que el jugador no pueda volver atrás, hay una barrera que resulta invisible al jugador pero que se puede ver en el editor. Esta barrera puede avanzar pero no retroceder. Lo mismo sucede con la cámara, que aunque en el editor puede asignársele movimiento libre, normalmente sólo seguirá al jugador sin poder retroceder.

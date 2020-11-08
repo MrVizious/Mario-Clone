@@ -15,6 +15,13 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
+    }
+
+    /// <summary>
+    /// Updates the direction of the sprite depending on the input
+    /// </summary>
+    private void UpdateSpriteDirection()
+    {
         if (input.horizontalInput > 0f)
         {
             sprite.flipX = false;
@@ -25,6 +32,9 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Stops the player in place and restarts the game after a short time
+    /// </summary>
     public void Die()
     {
         GetComponent<PlayerInput>().enabled = false;
@@ -36,6 +46,10 @@ public class PlayerAnimation : MonoBehaviour
         StartCoroutine(DieAnimation());
     }
 
+    /// <summary>
+    /// Restarts the game after a short time
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator DieAnimation()
     {
         yield return new WaitForSeconds(0.5f);

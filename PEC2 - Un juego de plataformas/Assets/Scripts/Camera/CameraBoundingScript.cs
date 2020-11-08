@@ -30,6 +30,7 @@ public class CameraBoundingScript : MonoBehaviour
     void Update()
     {
 
+        // Changes the camera behaviour depending on which one is selected
         switch (cameraBehaviour)
         {
             //If Free Camera movement is chosen
@@ -49,7 +50,7 @@ public class CameraBoundingScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Move player according to player inputs, not player position
+    /// Move camera according to player inputs, not player position
     /// </summary>
     private void FreeMovement()
     {
@@ -60,11 +61,17 @@ public class CameraBoundingScript : MonoBehaviour
         transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * moveSpeed + Vector2.up * verticalInput * Time.deltaTime * moveSpeed);
     }
 
+    /// <summary>
+    /// Follows the player
+    /// </summary>
     private void FollowPlayer()
     {
         transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
     }
 
+    /// <summary>
+    /// Sets the camera on its lowest possible x value
+    /// </summary>
     private void SetNewConstraints()
     {
         if (transform.position.x > MIN_X_POSITION) MIN_X_POSITION = transform.position.x;

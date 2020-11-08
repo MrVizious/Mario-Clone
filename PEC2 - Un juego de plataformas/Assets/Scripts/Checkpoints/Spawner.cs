@@ -11,6 +11,9 @@ public class Spawner : MonoBehaviour
         if (other.tag.Equals("Player")) Spawn();
     }
 
+    /// <summary>
+    /// Spawns all of the gameobjects it has assigned
+    /// </summary>
     private void Spawn()
     {
         foreach (GameObject item in gameobjectsToSpawn)
