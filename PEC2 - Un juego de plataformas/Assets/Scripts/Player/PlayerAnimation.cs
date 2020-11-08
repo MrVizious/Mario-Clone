@@ -42,10 +42,4 @@ public class PlayerAnimation : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         yield return null;
     }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        Debug.Log("Hit enemy!");
-        if (other.collider.tag.Equals("Enemy")) Die();
-    }
 }
