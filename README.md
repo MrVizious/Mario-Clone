@@ -21,7 +21,7 @@ El primero, **PlayerInput**, se encarga de mantener actualizadas una serie de va
 
 **PlayerMovement** utiliza la información del input para decidir qué debe hacer Mario. Cuándo saltar, hacia qué dirección, etc. Además, lleva un control sobre si el jugador ha entrado en contacto con el suelo o con un enemigo desde abajo, y si es el caso, llama a la función Die() de dicho enemigo.
 
-**PlayerAnimation**, por último, se puede ampliar para añadir animaciones de correr, saltar, frenar y acelerar, aunque de momento simplemente se encarga de mantener a Mario apuntando al sitio al que se mueve, a base de invertir el sprite. También es en este script donde se encuentra la función Die() de Mario que, aun pudiendo estar en una clase como PlayerController o similar, se ha puesto aquí por no crear demasiados scripts y porque, de igual manera, haría falta tener esta función aquí para mostrar la animación de muerte.
+**PlayerAnimation**, por último, implementa animaciones de correr, saltar y morir, y además se encarga de mantener a Mario apuntando al sitio al que se mueve, a base de invertir el sprite. También es en este script donde se encuentra la función Die() de Mario que, aun pudiendo estar en una clase como PlayerController o similar, se ha puesto aquí por no crear demasiados scripts y porque, de igual manera, hace falta tener esta función aquí para mostrar la animación de muerte.
 
 ## Estructura de software de los enemigos
 
