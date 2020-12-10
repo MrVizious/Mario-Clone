@@ -32,3 +32,34 @@ Los enemigos tienen dos scripts:
 ## Elementos de pantalla
 
 Para conseguir que el jugador no pueda volver atrás, hay una barrera que resulta invisible al jugador pero que se puede ver en el editor. Esta barrera puede avanzar pero no retroceder. Lo mismo sucede con la cámara, que aunque en el editor puede asignársele movimiento libre, normalmente sólo seguirá al jugador sin poder retroceder.
+
+
+# PEC 3
+
+Primero decir que el aspecto 4:3 es a propósito para mantener el mismo campo de visión y pixelart que el juego original. Ahora se ecplicarán los puntos que se pedían completar en el trabajo:
+
+## Mínimo un personaje con dos o más animaciones
+
+Mario tiene 3 animaciones: Correr, saltar y morir.
+
+Los goombas tienen 2: Andar y morir.
+
+## Mínimo un sistema de partículas en el juego
+
+Al lanzar una bola de fuego, ésta dejará una estela de fuego allá por donde haya pasado que durará poco tiempo.
+
+## Enemigos con un mínimo de inteligencia artificial
+
+Los goombas avanzan en una misma dirección hasta que chocan contra un obstáculo del entorno, en cuyo momento se dan la vuelta y andan en la dirección contraria.
+
+## Poder disparar a los enemigos
+
+La bola de fuego de Mario se lanza con el botón E en el teclado. Esta tiene una animación de giro y puede dar un máximo de 4 botes, o desaparece si se choca contra un enemigo, matándolo.
+
+## Control de estado del juego
+
+Hay 3 vidas al empezar una partida, y una serie de checkpoints a lo largo del juego. Si llegas a un checkpoint más avanzado que el último, este será sustituido por el nuevo. Si mueres pero te siguen quedando vidas, reaparecerás en uno de estos checkpoints.
+
+## Uso de tags y layers
+
+Las tags y layers se usan para evitar que, por ejemplo, los goombas choquen entre ellos, o que las bolas de fuego choquen con el propio Mario o entre ellas.
