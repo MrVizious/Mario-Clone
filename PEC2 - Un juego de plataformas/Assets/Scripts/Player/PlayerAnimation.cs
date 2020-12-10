@@ -62,6 +62,6 @@ public class PlayerAnimation : MonoBehaviour
     private IEnumerator DieAnimation()
     {
         yield return new WaitForSeconds(0.5f);
-        sceneController.GoToEndMenu();
+        GameObject.Find("LevelController").GetComponent<LevelController>().Die();
     }
 }
