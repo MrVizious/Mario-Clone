@@ -8,11 +8,18 @@ public class LevelController : MonoBehaviour
     public GameObject player;
     public SceneController scene;
 
+    /// <summary>
+    /// Sets the player's position as the latest checkpoint
+    /// </summary>
     private void Start()
     {
         player.transform.position = data.getLatestCheckPoint();
     }
 
+    /// <summary>
+    /// Substracts one life and then decides whether to restart from the last checkpoint or
+    /// go to the end menu
+    /// </summary>
     public void Die()
     {
         data.currentNumberOfLifes--;
@@ -27,6 +34,10 @@ public class LevelController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks if the new checkpoint is the furthest and sets it
+    /// </summary>
+    /// <param name="newCheckPoint"></param>
     public void setLatestCheckPoint(Vector2 newCheckPoint)
     {
         if (newCheckPoint.x > data.getLatestCheckPoint().x)
@@ -35,6 +46,9 @@ public class LevelController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resets the data of the level and sends the player to the end menu
+    /// </summary>
     public void FinishLevel()
     {
         data.Reset();

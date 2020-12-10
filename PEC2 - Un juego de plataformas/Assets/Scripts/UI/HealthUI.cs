@@ -14,6 +14,9 @@ public class HealthUI : MonoBehaviour
         text = GetComponent<Text>();
     }
 
+    /// <summary>
+    /// Updates the information shown
+    /// </summary>
     private void Update()
     {
         text.text = "Lifes: " + data.currentNumberOfLifes;
