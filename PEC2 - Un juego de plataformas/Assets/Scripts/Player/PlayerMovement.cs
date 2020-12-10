@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public float enemyCheckDistance = 0.05f, enemyCheckOffset = 0.3f;
     public float normalGravity = 6.9f, slowGravity = 3.5f;
     public bool grounded = false;
+
+    public GameObject fireballPrefab;
     private int groundCheckLayermask, enemyCheckLayerMask;
     void Start()
     {
@@ -25,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         CheckJump();
         HorizontalMovement();
+        CheckFireball();
     }
     void FixedUpdate()
     {
@@ -54,6 +57,20 @@ public class PlayerMovement : MonoBehaviour
     public void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+    }
+
+    public void CheckFireball()
+    {
+        if (input.runInputPressedDown) Fire();
+    }
+
+    private void Fire()
+    {
+        Instantiate(fireballPrefab, transform.position,
+                    GetComponent<SpriteRenderer>().flipX ?
+                        Quaternion.Euler(0, 180, 0)
+                        : Quaternion.Euler(0, 0, 0)
+                    );
     }
 
     /// <summary>

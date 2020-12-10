@@ -11,14 +11,14 @@ public class PlayerInput : MonoBehaviour
 
     //Different input values
     public int horizontalInput = 0;
-    public bool runInputHeldDown = false, jumpInputPressedDown = false, jumpInputHeldDown = false;
+    public bool runInputPressedDown = false, jumpInputPressedDown = false, jumpInputHeldDown = false;
 
     //Sprite for flipping
 
     void Update()
     {
         UpdateHorizontalInput();
-        //UpdateRunInputPressed();
+        UpdateRunInputPressed();
         UpdateJumpInput();
     }
 
@@ -45,7 +45,7 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     private void UpdateRunInputPressed()
     {
-        runInputHeldDown = Input.GetButtonDown("Run");
+        runInputPressedDown = Input.GetButtonDown("Run");
     }
 
     /// <summary>

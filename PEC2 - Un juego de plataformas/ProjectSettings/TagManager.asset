@@ -7,6 +7,7 @@ TagManager:
   - Block
   - Terrain
   - Enemy
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - Barrier
   - Player
   - Enemy
-  - 
-  - 
+  - Particles
+  - Projectile
   - 
   - 
   - 
@@ -61,4 +62,7 @@ TagManager:
     locked: 0
   - name: Front
     uniqueID: 2872063635
+    locked: 0
+  - name: Particles
+    uniqueID: 3820821277
     locked: 0

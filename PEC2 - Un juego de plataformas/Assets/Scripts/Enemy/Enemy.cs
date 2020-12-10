@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     /// <param name="playerMovement"></param>
     public void Die(PlayerMovement playerMovement)
     {
-        playerMovement.Jump();
+        playerMovement?.Jump();
         GetComponent<Animator>().SetBool("Dead", true);
         GetComponent<GoombaMovement>().enabled = false;
         Destroy(GetComponent<Rigidbody2D>());

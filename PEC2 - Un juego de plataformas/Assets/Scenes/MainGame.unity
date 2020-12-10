@@ -8269,7 +8269,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6c463a63e7ff53f1f98047fd9fd3ac58, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -50953,7 +50953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalInput: 0
-  runInputHeldDown: 0
+  runInputPressedDown: 0
   jumpInputPressedDown: 0
   jumpInputHeldDown: 0
 --- !u!61 &1936934181
@@ -51026,6 +51026,8 @@ MonoBehaviour:
   normalGravity: 6.9
   slowGravity: 3.5
   grounded: 0
+  fireballPrefab: {fileID: 8471832647242892965, guid: e6794f4c6316633898034a5c55a3a1ef,
+    type: 3}
 --- !u!114 &1936934184
 MonoBehaviour:
   m_ObjectHideFlags: 0
