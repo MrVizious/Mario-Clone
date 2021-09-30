@@ -66,3 +66,6 @@ TagManager:
   - name: Particles
     uniqueID: 3820821277
     locked: 0
+  - name: Barriers
+    uniqueID: 4199291213
+    locked: 0
